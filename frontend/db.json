@@ -1,0 +1,39 @@
+{
+  "loan": [
+    {
+      "typicalExclusion": "fcn",
+      "loanId": "dddd",
+      "id": 1
+    },
+    {
+      "typicalExclusion": "fcn",
+      "loanId": "dddd",
+      "id": 2
+    },
+    {
+      "typicalExclusion": "fcn",
+      "loanId": "dddd",
+      "id": 3
+    },
+    {
+      "typicalExclusion": "fcn",
+      "loanId": "dddd",
+      "id": 4
+    },
+    {
+      "typicalExclusion": "loanid",
+      "loanId": "dssdd",
+      "id": 5
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

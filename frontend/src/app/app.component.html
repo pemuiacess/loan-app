@@ -1,0 +1,22 @@
+<mat-toolbar style="height:fit-content" color="primary">
+  <div>
+  <div>HSBC Contental Europe</div>
+  <div>CLCM - Corporate Loan Collateral Manager</div>
+  <div>Manual Exclusions</div>
+</div>
+<span class="example-spacer"></span>
+<button mat-button [matMenuTriggerFor]="menu" class="example-icon">Menu</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="createDialog()">create</button>
+  <button mat-menu-item (click)="searchDialog()">search</button>
+  <button mat-menu-item (click)="deleteDialog()">delete</button>
+</mat-menu>
+
+  
+</mat-toolbar>
+
+<div class="container">
+  <div style="margin: 10px;">
+    <router-outlet></router-outlet>
+  </div>
+</div>
