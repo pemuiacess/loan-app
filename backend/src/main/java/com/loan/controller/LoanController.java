@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class LoanController {
 
 
@@ -36,6 +37,8 @@ public class LoanController {
 
         if(byLoanId==null||byLoanId.isEmpty())
             return new ResponseEntity<>(byLoanId, HttpStatus.NO_CONTENT);
+
+        System.out.println(byLoanId);
 
         return new ResponseEntity<>(byLoanId, HttpStatus.OK);
 

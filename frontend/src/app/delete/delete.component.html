@@ -1,18 +1,21 @@
 <p mat-dialog-title>Delete Loan ID</p>
 
-<div mat-dialog-content>
-<form [formGroup]="loanForm">
+<mat-card>
+  <form [formGroup]="loanForm">
 
     <mat-form-field appearance="outline">
-        <mat-label>Loan ID</mat-label>
-        <input formControlName="loanId" matInput placeholder="Placeholder">
-      </mat-form-field>
+      <mat-label>Loan ID</mat-label>
+      <input formControlName="loanId" matInput placeholder="Placeholder">
+    </mat-form-field>
 
-</form>
+  </form>
 
-</div>
 
-<div mat-dialog-action [align]="'end'">
-  <button mat-raised-button color="warn" mat-dialog-close>Exit</button>
-  <button style="margin-left:8px" mat-raised-button color="primary" (click)="delete()" >Delete</button>
-</div>
+
+  <div mat-dialog-action [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close (click)="exit()">Exit</button>
+    <button style="margin-left:8px" mat-raised-button color="warn" mat-dialog-close (click)="cancel()">Cancel</button>
+    <button style="margin-left:8px" mat-raised-button color="primary" (click)="delete()">Delete</button>
+  </div>
+
+</mat-card>

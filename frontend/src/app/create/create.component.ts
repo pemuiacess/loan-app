@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 
 @Component({
@@ -12,30 +13,47 @@ export class CreateComponent implements OnInit {
 
   loanForm !: FormGroup
 
-  constructor(private formBuilder:FormBuilder,private api:ApiService,
-    private dialogRef:MatDialogRef<CreateComponent>) { }
+  constructor(private formBuilder: FormBuilder, private api: ApiService,
+    private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
 
-    this.loanForm= this.formBuilder.group({
-      loanId:['',Validators.required]
-    })
+    this.loanForm = this.formBuilder.group({
+      loanId: ['', Validators.required]
+    });
+
+    this.activatedRoute.paramMap.subscribe(params => {
+      console.log(params.get('lnId'));
+      console.log(params.get('typicalExclusion'));
+      //this.loanForm.controls['typicalExclusion'].setValue(params.get('typicalExclusion'));
+      this.loanForm.controls['loanId'].setValue(params.get('lnId'));
+    });
   }
 
-  create(){
+  create() {
     console.log(this.loanForm.value);
-    if(this.loanForm.valid){
+    if (this.loanForm.valid) {
       this.api.postLoan(this.loanForm.value)
-      .subscribe({
-        next:(res)=>{
-          alert("Loan added successfully");
-          this.loanForm.reset();
-          this.dialogRef.close('saved');
-        },
-        error:()=>{
-          alert("loan creation failed");
-        }     
-      })
+        .subscribe({
+          next: (res) => {
+            alert("Loan added successfully");
+            this.loanForm.reset();
+
+          },
+          error: () => {
+            alert("loan creation failed");
+          }
+        })
     }
+  }
+
+  cancel(){
+    this.router.navigate(['validate']);
+  
+  }
+
+  exit(){
+    this.router.navigate(['search']);
+  
   }
 }
