@@ -13,15 +13,19 @@ export class ApiService {
   
   
   postLoan(loanid:any){
-    return this.http.post<any>("http://localhost:8080/loan?loanid="+loanid,"");
+    return this.http.post<any>("http://localhost:8080?loanid="+loanid,"");
   }
   getAllLoan(){
-    return this.http.get<any>("http://localhost:8080/loan");
+    let response= this.http.get<any>("http://localhost:8080").subscribe(data=>{
+      return data;
+    });
+
+    return response;
   }
   getByLoanId(loanid:any){
     return this.http.get<any>("http://localhost:8080/loan?loanid="+loanid);
   }
   deleteByLoanId(loanid:any){
-    return this.http.get<any>("http://localhost:8080/loan?loanid="+loanid);
+    return this.http.get<any>("http://localhost:8080?loanid="+loanid);
   }
 }

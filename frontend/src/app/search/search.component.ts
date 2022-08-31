@@ -30,11 +30,13 @@ export class SearchComponent implements OnInit {
 
 
   view() {
-    this.loanForm.reset();
+    //this.loanForm.reset();
     //this.dialogRef.close('search');
     // this.dialog.open(ViewComponent, {
     //   width:'30%'
     // });
+    let te=this.loanForm.value['typicalExclusion'];
+    this.router.navigate(['view']);
   }
 
   validate() {
@@ -43,7 +45,7 @@ export class SearchComponent implements OnInit {
     console.log(this.loanForm.value);
     let te=this.loanForm.value['typicalExclusion'];
     this.loanForm.reset();
-    this.router.navigate(['validate']);
+    this.router.navigate(['validate',{ name: te }]);
     // this.dialog.open(ValidateComponent, {
     //   width:'30%',
     //   data:{
