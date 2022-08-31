@@ -12,10 +12,10 @@ import { ApiService } from '../services/api.service';
 export class DeleteComponent implements OnInit {
 
   loanForm !: FormGroup
-
+   
   constructor(private formBuilder: FormBuilder, private api: ApiService,
     private router: Router, private activatedRoute: ActivatedRoute) { }
-
+  
   ngOnInit(): void {
 
     this.loanForm = this.formBuilder.group({
@@ -23,8 +23,7 @@ export class DeleteComponent implements OnInit {
     });
 
     this.activatedRoute.paramMap.subscribe(params => {
-      console.log(params.get('lnId'));
-      console.log(params.get('typicalExclusion'));
+      //this.te=params.get('typicalExclusion');
       this.loanForm.controls['loanId'].setValue(params.get('lnId'));
     });
   }
@@ -33,14 +32,10 @@ export class DeleteComponent implements OnInit {
     console.log(this.loanForm.value);
     if (this.loanForm.valid) {
       this.api.deleteByLoanId(this.loanForm.value['loanId'])
-        .subscribe({
-          next: (res) => {
-            alert("Loan deleted successfully");
-            this.loanForm.reset();
-          },
-          error: () => {
-            alert("loan deletion failed");
-          }
+        .then(data=>{
+            console.log(data);
+        }).catch(error=>{
+          console.log(error);
         })
     }
   }

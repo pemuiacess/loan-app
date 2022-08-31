@@ -13,21 +13,54 @@ export class ApiService {
 
 
   postLoan(loanid: any) {
-    return this.http.post<any>("http://localhost:8080?loanid=" + loanid, "");
+    return this.http.post<any>("http://localhost:8080/loan?loanid=" + loanid, "").toPromise()
+    
+    .then(data => {
+
+      return data;
+    }).catch(error=>{
+      console.log("error");
+      console.log(error);
+      return null;
+  });
+
   }
   getAllLoan() {
-    let response = this.http.get<any>("http://localhost:8080").subscribe(data => {
+    let response = this.http.get<any>("http://localhost:8080/loan").toPromise()
+    
+    .then(data => {
+
       return data;
-    });
+    }).catch(error=>{
+      console.log("error");
+      console.log(error);
+      return null;
+  });
 
     const mock = [{ "creance": "test2", "dateMaj": "2022-08-29 12:03:46.541" }, { "creance": "test", "dateMaj": "2022-08-29 12:03:25.921" }, { "creance": "test1", "dateMaj": "2022-08-29 12:03:44.838" }, { "creance": "test3", "dateMaj": "2022-08-29 12:03:48.943" }, { "creance": "test4", "dateMaj": "2022-08-29 12:03:50.522" }];
 
-    return mock;
+    return response;
   }
   getByLoanId(loanid: any) {
-    return this.http.get<any>("http://localhost:8080/loan?loanid=" + loanid);
+    return this.http.get<any>("http://localhost:8080/loan/byId?loanid=" + loanid).toPromise()
+    .then(data=>{
+      return data;
+    }).catch(error=>{
+        console.log("error");
+        console.log(error);
+        return null;
+    });
   }
   deleteByLoanId(loanid: any) {
-    return this.http.get<any>("http://localhost:8080?loanid=" + loanid);
+    return this.http.delete<any>("http://localhost:8080/loan?loanid=" + loanid).toPromise()
+    
+    .then(data => {
+
+      return data;
+    }).catch(error=>{
+      console.log("error");
+      console.log(error);
+      return null;
+  });
   }
 }

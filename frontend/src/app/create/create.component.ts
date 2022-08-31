@@ -33,17 +33,12 @@ export class CreateComponent implements OnInit {
   create() {
     console.log(this.loanForm.value);
     if (this.loanForm.valid) {
-      this.api.postLoan(this.loanForm.value)
-        .subscribe({
-          next: (res) => {
-            alert("Loan added successfully");
-            this.loanForm.reset();
-
-          },
-          error: () => {
-            alert("loan creation failed");
-          }
-        })
+      this.api.postLoan(this.loanForm.value['loanId'])
+       .then(data=>{
+        console.log(data);
+       }).catch(error=>{
+        console.log(error);
+       })
     }
   }
 

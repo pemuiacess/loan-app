@@ -47,14 +47,19 @@ export class ViewComponent implements OnInit {
       this.loanForm.controls['typicalExclusion'].setValue(params.get('name'));
       console.log(this.loanForm);
    });
-    let loanData = this.api.getAllLoan();
-    this.loans = loanData;
+    //let loanData = 
+    this.api.getAllLoan().then(data=>{
+      this.loans=data;
+    }).catch(error=>{
+      console.log(error);
+    });
+//    this.loans = loanData;
     // this.dataSource = loanData;
 
 
-    this.loans.forEach((item: any) => {
-      console.log(item);
-    });
+    // this.loans.forEach((item: any) => {
+    //   console.log(item);
+    // });
 
    
   }

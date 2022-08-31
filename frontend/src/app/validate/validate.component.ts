@@ -38,19 +38,31 @@ export class ValidateComponent implements OnInit {
     let te = this.loanForm.value['typicalExclusion'];
     let loanId= this.loanForm.value['loanId'];
     if (this.loanForm.valid) {
-      this.api.getByLoanId(this.loanForm.value)
-        .subscribe({
-          next: (res) => {
-            alert("Loan validated successfully");
-            this.loanForm.reset();
-            //this.dialogRef.close('validate');
-            this.router.navigate(['delete', { typicalExclusion: te, lnId:loanId }]);
-          },
-          error: () => {
-            alert("loan validation failed");
-            this.router.navigate(['create', { typicalExclusion: te, lnId:loanId }]);
-          }
-        })
+    this.api.getByLoanId(this.loanForm.value['loanId'])
+      .then(data=>{
+        if(data==null){
+          this.router.navigate(['create', { typicalExclusion: te, lnId:loanId }]);
+        }else{
+          this.router.navigate(['delete', { typicalExclusion: te, lnId:loanId }]);
+        }
+      }).catch(error=>{
+        this.router.navigate(['create', { typicalExclusion: te, lnId:loanId }]);
+      });
+     
+
+        // .subscribe({
+        //   next: (res) => {
+        //     alert("Loan validated successfully");
+        //     this.loanForm.reset();
+        //     console.log("response......."+res);
+        //     //this.dialogRef.close('validate');
+        //     this.router.navigate(['delete', { typicalExclusion: te, lnId:loanId }]);
+        //   },
+        //   error: () => {
+        //     alert("loan validation failed");
+        //     this.router.navigate(['create', { typicalExclusion: te, lnId:loanId }]);
+        //   }
+        // })
     }
   }
 
