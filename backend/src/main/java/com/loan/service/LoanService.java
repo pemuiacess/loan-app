@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -43,15 +42,6 @@ public class LoanService {
         loanRepository.deleteById(loanId);
     }
 
-
-    public boolean validateLoanId(String loanId) {
-
-        Optional<LoanEntity> byLoanId = loanRepository.findById(loanId);
-
-        return byLoanId.isPresent();
-
-
-    }
 
     public List<LoanDTO> findAllLoanId() {
         List<LoanEntity> findAllLoanIds = loanRepository.findAll();

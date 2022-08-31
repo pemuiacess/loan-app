@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@CrossOrigin(origins = "*")
+@RestController()
+@RequestMapping(value = {"/loan"})
+@CrossOrigin(origins = "http://localhost:4200",allowedHeaders = "*")
 public class LoanController {
 
 
@@ -28,7 +29,6 @@ public class LoanController {
         return new ResponseEntity<>(byLoanId, HttpStatus.OK);
 
     }
-
 
     @GetMapping
     public ResponseEntity<List<LoanDTO>> findAll(){
@@ -57,18 +57,6 @@ public class LoanController {
 
             loanService.deleteLoanId(loanId);
         return new ResponseEntity<>(loanId+ " deleted successfully", HttpStatus.OK);
-    }
-
-    @GetMapping("/validate/byId")
-    public ResponseEntity<String> validateLoanId(@RequestParam("loanid") String loanId){
-
-        boolean isValid=loanService.validateLoanId(loanId);
-
-        if(isValid)
-            return new ResponseEntity<>(loanId+ " is valid",HttpStatus.OK);
-
-        return new ResponseEntity<>(loanId+ " is invalid",HttpStatus.NOT_FOUND);
-
     }
 
 }
