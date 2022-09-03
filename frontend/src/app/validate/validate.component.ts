@@ -40,10 +40,13 @@ export class ValidateComponent implements OnInit {
     if (this.loanForm.valid) {
     this.api.getByLoanId(this.loanForm.value['loanId'])
       .then(data=>{
+        console.log(data);
+        console.log(data[0]);
+        console.log(data[0].dateMaj);
         if(data==null){
           this.router.navigate(['create', { typicalExclusion: te, lnId:loanId }]);
         }else{
-          this.router.navigate(['delete', { typicalExclusion: te, lnId:loanId }]);
+          this.router.navigate(['delete', { typicalExclusion: te, lnId:loanId, respdata:data[0].dateMaj,te: this.loanForm.controls['typicalExclusion']}]);
         }
       }).catch(error=>{
         this.router.navigate(['create', { typicalExclusion: te, lnId:loanId }]);

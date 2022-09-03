@@ -20,6 +20,7 @@ import { SearchComponent } from './search/search.component';
 import {MatCardModule} from '@angular/material/card';
 import { AppRoutingModule } from './app-routing.module';
 import { MatTableModule } from '@angular/material/table' 
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,8 @@ import { MatTableModule } from '@angular/material/table'
     HttpClientModule,
     AppRoutingModule,
     MatTableModule,
+    MatCheckboxModule,
+   
 
   ],
   providers: [],
