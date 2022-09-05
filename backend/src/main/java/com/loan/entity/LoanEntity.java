@@ -1,9 +1,9 @@
 package com.loan.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+//import lombok.AllArgsConstructor;
+//import lombok.Builder;
+//import lombok.Data;
+//import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,10 +13,10 @@ import java.util.Date;
 
 @Table(name="CLCM_EXCLURE_LOAN")
 @Entity(name = "loanEntity")
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
+//@Data
+//@Builder
+//@AllArgsConstructor
+//@NoArgsConstructor
 public class LoanEntity {
 
     @Id
@@ -25,4 +25,20 @@ public class LoanEntity {
 
     @Column(name="date_maj")
     private Date dateMaj;
+
+    public String getCreance() {
+        return creance;
+    }
+
+    public void setCreance(String creance) {
+        this.creance = creance;
+    }
+
+    public Date getDateMaj() {
+        return dateMaj;
+    }
+
+    public void setDateMaj(Date dateMaj) {
+        this.dateMaj = dateMaj;
+    }
 }

@@ -31,15 +31,16 @@ export class SearchComponent implements OnInit {
     //   width:'30%'
     // });
     let te = this.loanForm.value['typicalExclusion'];
+    console.log("routing to view screen");
     this.router.navigate(['view',{name:te}]);
   }
 
   validate() {
 
     // this.dialogRef.close('search');
-    console.log(this.loanForm.value);
     let te = this.loanForm.value['typicalExclusion'];
     this.loanForm.reset();
+    console.log("routing to validate screen");
     this.router.navigate(['validate', { name: te }]);
     // this.dialog.open(ValidateComponent, {
     //   width:'30%',

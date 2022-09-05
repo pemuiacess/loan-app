@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 
@@ -23,9 +22,6 @@ export class CreateComponent implements OnInit {
     });
 
     this.activatedRoute.paramMap.subscribe(params => {
-      console.log(params.get('lnId'));
-      console.log(params.get('typicalExclusion'));
-      //this.loanForm.controls['typicalExclusion'].setValue(params.get('typicalExclusion'));
       this.loanForm.controls['loanId'].setValue(params.get('lnId'));
     });
   }
@@ -35,8 +31,12 @@ export class CreateComponent implements OnInit {
     if (this.loanForm.valid) {
       this.api.postLoan(this.loanForm.value['loanId'])
        .then(data=>{
-        console.log(data);
+        if(data!=null){
+        console.log("created record");
+
+        }
        }).catch(error=>{
+        console.log("error while creating record");
         console.log(error);
        })
     }
@@ -44,11 +44,11 @@ export class CreateComponent implements OnInit {
 
   cancel(){
     this.router.navigate(['validate']);
-  
+    console.log("routed to validate screen");
   }
 
   exit(){
     this.router.navigate(['search']);
-  
+    console.log("routed to search screen");
   }
 }

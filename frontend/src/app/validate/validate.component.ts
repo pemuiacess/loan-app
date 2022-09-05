@@ -27,28 +27,30 @@ export class ValidateComponent implements OnInit {
       //  this.loanForm.controls['typicalExclusion'].setValue(params.get('username'));
       if(params.get('name')!=null){
       this.loanForm.controls['typicalExclusion'].setValue(params.get('name'));
-       console.log(this.loanForm);
+       
       }
     });
   }
 
 
   validate() {
-    console.log(this.loanForm.value);
+    
     let te = this.loanForm.value['typicalExclusion'];
     let loanId= this.loanForm.value['loanId'];
     if (this.loanForm.valid) {
     this.api.getByLoanId(this.loanForm.value['loanId'])
       .then(data=>{
-        console.log(data);
-        console.log(data[0]);
-        console.log(data[0].dateMaj);
-        if(data==null){
+      if(data==null){
+        console.log(" routing to create screen as loanid : "+loanId+" doesnot exist ");
           this.router.navigate(['create', { typicalExclusion: te, lnId:loanId }]);
+          
         }else{
+          console.log(" routing to delete screen as loanid : "+loanId+" exist ");
           this.router.navigate(['delete', { typicalExclusion: te, lnId:loanId, respdata:data[0].dateMaj,te: this.loanForm.controls['typicalExclusion']}]);
         }
       }).catch(error=>{
+        console.log(" routing to create screen as loanid : "+loanId+" is unable to be fetched ");
+
         this.router.navigate(['create', { typicalExclusion: te, lnId:loanId }]);
       });
      

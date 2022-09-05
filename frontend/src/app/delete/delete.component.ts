@@ -27,9 +27,7 @@ export class DeleteComponent implements OnInit {
     });
 
     this.activatedRoute.paramMap.subscribe(params => {
-      //this.te=params.get('typicalExclusion');
       this.loanForm.controls['loanId'].setValue(params.get('lnId'));
-      console.log(params.get('respdata'));
       this.loanForm.controls['dateMaj'].setValue(params.get('respdata'));
       this.loanForm.controls['typicalExclusion'].setValue(params.get('te'));
     });
@@ -41,20 +39,26 @@ export class DeleteComponent implements OnInit {
     if (this.loanForm.valid && this.loanForm.value['selectedCheckbox']) {
       this.api.deleteByLoanId(this.loanForm.value['loanId'])
         .then(data=>{
-            console.log(data);
-            this.router.navigate(['view',{name: this.loanForm.value['typicalExclusion']}]);
+          if(data!=null){
+          console.log("deleted record");
+          } 
+          this.router.navigate(['view',{name: this.loanForm.value['typicalExclusion']}]);
         }).catch(error=>{
+          console.log("error while deleting the record");
           console.log(error);
+
         })
     }
   }
 
   cancel(){
+    console.log("routed to validate screen");
     this.router.navigate(['validate']);
   
   }
 
   exit(){
+    console.log("routed to search screen");
     this.router.navigate(['search']);
   
   }

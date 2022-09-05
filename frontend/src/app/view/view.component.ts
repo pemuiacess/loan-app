@@ -42,10 +42,8 @@ export class ViewComponent implements OnInit {
     });
 
     this.activatedRoute.paramMap.subscribe(params => {
-      console.log(params.get('name'));
-
       this.loanForm.controls['typicalExclusion'].setValue(params.get('name'));
-      console.log(this.loanForm);
+      
    });
     //let loanData = 
     this.api.getAllLoan().then(data=>{
@@ -85,10 +83,14 @@ export class ViewComponent implements OnInit {
   }
 
   cancel() {
+    console.log(" routing to search screen ");
+
     this.router.navigate(['search']);
   }
 
   exit(){
+    console.log(" routing to search screen ");
+
     this.router.navigate(['search']);
   }
 
